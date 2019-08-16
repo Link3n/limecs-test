@@ -1,2 +1,80 @@
-body
-  background-color: red
+@import normalize
+*
+  box-sizing: border-box
+.container
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: center
+  width: 100vw
+  height: 100vh
+  background-color: black
+
+.arrow
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  margin-top: -250px
+  width: 0
+  height: 0
+  border-color: transparent
+  border-style: solid
+  border-width: 0 10px
+  border-top: 30px solid white
+  z-index: 3
+
+.wheel
+  position: relative
+  width: 500px
+  height: 500px
+  border-radius: 50%
+  border: 2px solid #ffffff
+  overflow: hidden
+
+.wheel--animate
+  animation: rotate 5s ease-out infinite
+
+.wheel__segment
+  position: absolute
+  width: 0
+  height: 0
+  top: 0
+  left: 50%
+  border-color: transparent
+  border-style: solid
+  border-width: 0 145px
+  transform-origin: 50% 100%
+
+.wheel__segment--first
+  transform: translateX(-50%) rotate(0deg)
+  border-top: 250px solid green
+.wheel__segment--second
+  transform: translateX(-50%) rotate(60deg)
+  border-top: 250px solid yellow
+.wheel__segment--third
+  transform: translateX(-50%) rotate(120deg)
+  border-top: 250px solid red
+.wheel__segment--fourth
+  transform: translateX(-50%) rotate(180deg)
+  border-top: 250px solid cyan
+.wheel__segment--fifth
+  transform: translateX(-50%) rotate(240deg)
+  border-top: 250px solid blue
+.wheel__segment--sixth
+  transform: translateX(-50%) rotate(300deg)
+  border-top: 250px solid orange
+
+.number
+  position: absolute
+  top: -200px
+  left: 50%
+  font-size: 36px
+  color: #ffffff
+  transform: translateX(-50%)
+
+@keyframes rotate
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
