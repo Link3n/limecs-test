@@ -1,3 +1,18 @@
+@mixin button($bgColor)
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: center
+  height: 50px
+  padding: 0 20px
+  font-size: 16px
+  font-weight: bold
+  color: #ffffff
+  white-space: nowrap
+  background-color: $bgColor
+  border-radius: 3px
+  cursor: pointer
+
 $segments-count: 6
 $segment-degree: 360deg / $segments-count
 $wheel-colors: green yellow red cyan blue orange
