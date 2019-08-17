@@ -1,28 +1,77 @@
 @import normalize
+@import variables
+
 *
   box-sizing: border-box
+
 .container
+  background-color: black
+
+.popup
+  position: absolute
+  top: 20px
+  left: 50%
+  min-width: 200px
+  padding: 20px
+  background-color: white
+  transform: translate(-50%, -300px)
+  border-radius: 3px
+  transition: 0.5s ease
+  z-index: 10
+
+.popup--show
+  transform: translate(-50%, 0)
+
+.popup__text
+  margin-bottom: 20px
+  font-size: 16px
+  font-weight: bold
+
+.popup__buttons
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: space-between
+
+.popup__button
+  margin-right: 10px
+
+.button
   display: flex
   flex-flow: row nowrap
   align-items: center
   justify-content: center
-  width: 100vw
-  height: 100vh
-  background-color: black
+  height: 50px
+  padding: 0 20px
+  font-size: 16px
+  font-weight: bold
+  color: #ffffff
+  border-radius: 3px
+  cursor: pointer
+
+.button--red
+  background-color: red
+.button--green
+  background-color: green
 
 .arrow
-  position: absolute
-  left: 50%
-  top: 50%
-  transform: translate(-50%, -50%)
-  margin-top: -250px
   width: 0
   height: 0
   border-color: transparent
   border-style: solid
   border-width: 0 10px
   border-top: 30px solid white
+  transform: translateY(20px)
   z-index: 3
+
+.wheel-container
+  position: relative
+  display: flex
+  flex-flow: column nowrap
+  align-items: center
+  justify-content: center
+  width: 100vw
+  height: 100vh
 
 .wheel
   position: relative
@@ -31,9 +80,7 @@
   border-radius: 50%
   border: 2px solid #ffffff
   overflow: hidden
-
-.wheel--animate
-  animation: rotate 5s ease-out infinite
+  transition: 5s ease-out
 
 .wheel__segment
   position: absolute
@@ -46,24 +93,10 @@
   border-width: 0 145px
   transform-origin: 50% 100%
 
-.wheel__segment--first
-  transform: translateX(-50%) rotate(0deg)
-  border-top: 250px solid green
-.wheel__segment--second
-  transform: translateX(-50%) rotate(60deg)
-  border-top: 250px solid yellow
-.wheel__segment--third
-  transform: translateX(-50%) rotate(120deg)
-  border-top: 250px solid red
-.wheel__segment--fourth
-  transform: translateX(-50%) rotate(180deg)
-  border-top: 250px solid cyan
-.wheel__segment--fifth
-  transform: translateX(-50%) rotate(240deg)
-  border-top: 250px solid blue
-.wheel__segment--sixth
-  transform: translateX(-50%) rotate(300deg)
-  border-top: 250px solid orange
+@for $i from 1 through $segments-count
+  .wheel__segment:nth-of-type(#{$i})
+    transform: translateX(-50%) rotate(#{($i - 1) * $segment-degree})
+    border-top: 250px solid nth($wheel-colors, $i)
 
 .number
   position: absolute
@@ -73,8 +106,7 @@
   color: #ffffff
   transform: translateX(-50%)
 
-@keyframes rotate
-  0%
-    transform: rotate(0deg)
-  100%
-    transform: rotate(360deg)
+.button--wheel-button
+  margin-top: 50px
+.button--rotating
+  pointer-events: none
